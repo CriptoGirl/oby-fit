@@ -1,0 +1,220 @@
+extends ../layout
+
+block content
+  //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  //<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  br
+  h2 Custody Posting
+
+  // JavaScript section
+
+  // Form section
+  form(method='POST' action='/custodyPosting')
+
+    div.form-group
+    div.form-row
+      div.col-md-2
+        label(for='instrument_id' ) Insrument Id:*
+        input.form-control(
+          id='instrument_id'
+          name='instrument_id'
+          type='number'
+          required
+        )
+
+      div.col-md-2
+        label(for='quantity' ) Quantity:*
+        input.form-control(
+          id='quantity'
+          name='quantity'
+          type='number'
+          required
+        )
+    hr
+    div.form-row
+      div.col-md-2
+        label(for='custody_id' ) Custody Id:*
+        input.form-control(
+          id='custody_id'
+          name='custody_id'
+          type='number'
+          required
+        )
+
+      div.col-md-2
+        label(for='position_tp') Position Type:*
+        select.form-control(
+            id='position_tp'
+            name='position_tp'
+            required
+          )
+            option(value='PEND') Pending
+            option(value='PENR') PENR
+            option(value='SETT') SETT
+            option(value='PENE') PENE
+            option(value='ESCW') Escrow
+
+      div.col-md-2
+        label(for='post_dt' ) Posting Date:*
+        input.form-control(
+          id='post_dt'
+          name='post_dt'
+          type='date'
+          required
+        )
+
+      div.col-md-2
+        label(for='value_dt' ) Value Date:
+        input.form-control(
+          id='value_dt'
+          name='value_dt'
+          type='date'
+        )
+    hr
+    div.form-row
+      div.col-md-2
+        label(for='txn_code') Transaction Code:*
+        select.form-control(
+            id='txn_code'
+            name='txn_code'
+            required
+          )
+            option(value='TC01') Txn Code 01
+            option(value='TC02') Txn Code 02
+            option(value='TC03') Txn Code 03
+            option(value='TC04') Txn Code 04
+      div.col-md-2
+        label(for='originating_txt' ) Originating Transaction:
+        input.form-control(
+          id='originating_txt'
+          name='originating_txt'
+          type='number'
+        )
+      div.col-md-2
+        label(for='override_cd') Override Code:
+        select.form-control(
+            id='override_cd'
+            name='override_cd'
+          )
+            option(value='')
+            option(value='OC01') Override Code 01
+            option(value='OC02') Override Code 02
+            option(value='OC03') Override Code 03
+    hr
+    div.form-row
+      div.col-md-2
+        label(for='special_price_reason') Special Price Reason:
+        select.form-control(
+            id='special_price_reason'
+            name='special_price_reason'
+          )
+            option(value='')
+            option(value='PR01') Reason 01
+            option(value='PR02') Reason 02
+            option(value='PR03') Reason 03
+            option(value='PR04') Reason 04
+      div.col-md-2
+        label(for='price_cy') Price Currency:
+        select.form-control(
+            id='price_cy'
+            name='price_cy'
+          )
+            option(value='')
+            option(value='GBP') British Pounds
+            option(value='EUR') Euros
+            option(value='USD') US Dollars
+            option(value='RUB') Russian Roubles
+      div.col-md-2
+        label(for='price' ) Price:
+        input.form-control(
+          id='price'
+          name='price'
+          type='number'
+        )
+      div.col-md-2
+        label(for='price_condition') Price Condition:
+        select.form-control(
+            id='price_condition'
+            name='price_condition'
+          )
+            option(value='')
+            option(value='PC01') Condition 01
+            option(value='PC02') Condition 02
+            option(value='PC03') Condition 03
+    hr
+    div.form-row
+      div.col-md-2
+        label(for='local_cy') Local Currency:
+        select.form-control(
+            id='local_cy'
+            name='local_cy'
+          )
+            option(value='')
+            option(value='GBP') British Pounds
+            option(value='EUR') Euros
+            option(value='USD') US Dollars
+            option(value='RUB') Russian Roubles
+      div.col-md-2
+        label(for='local_cy_value' ) Local Currency Value:
+        input.form-control(
+          id='local_cy_value'
+          name='local_cy_value'
+          type='number'
+        )
+
+      div.col-md-2
+        label(for='reporting_cy') Reporting Currency:
+        select.form-control(
+            id='reporting_cy'
+            name='reporting_cy'
+          )
+            option(value='')
+            option(value='GBP') British Pounds
+            option(value='EUR') Euros
+            option(value='USD') US Dollars
+            option(value='RUB') Russian Roubles
+      div.col-md-2
+        label(for='reporting_cy_value' ) Reporting Currency Value:
+        input.form-control(
+          id='reporting_cy_value'
+          name='reporting_cy_value'
+          type='number'
+        )
+    div.form-row
+      div.col-md-2
+        label(for='dealing_cy') Dealing Currency:
+        select.form-control(
+            id='dealing_cy'
+            name='dealing_cy'
+          )
+            option(value='')
+            option(value='GBP') British Pounds
+            option(value='EUR') Euros
+            option(value='USD') US Dollars
+            option(value='RUB') Russian Roubles
+      div.col-md-2
+        label(for='dealing_cy_value' ) Dealing Currency Value:
+        input.form-control(
+          id='dealing_cy_value'
+          name='dealing_cy_value'
+          type='number'
+        )
+    hr
+    div.form-row
+      label(for='narrative' ) Narrative:
+      textarea.form-control(
+        id='narrative'
+        name='narrative'
+        rows='5'
+      )
+
+    div.form-group
+    div.form-row
+      button.btn.btn-primary(type='submit') Post
+
+    div(id='errorDiv')
+
+    // Result Section
+    br
+    br
+    br

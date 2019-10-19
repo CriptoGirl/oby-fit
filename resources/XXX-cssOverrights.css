@@ -1,0 +1,26 @@
+.fade.in {
+opacity: 1 !important;
+}
+
+.modal.in .modal-dialog {
+-webkit-transform: translate(0, 0) !important;
+-o-transform: translate(0, 0) !important;
+transform: translate(0, 0) !important;
+}
+
+.modal-backdrop .fade .in {
+opacity: 0.5 !important;
+}
+
+.modal-backdrop.fade {
+opacity: 0.5 !important;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+}

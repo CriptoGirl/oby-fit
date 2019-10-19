@@ -1,0 +1,22 @@
+{
+	"name": "obyte-fit",
+	"version": "1.0.0",
+	"description": "Obyte Fitness Bot",
+	"main": "start.js",
+	"author": "Whistling Frogs",
+	"license": "MIT",
+	"dependencies": {
+		"express": "4.17.1",
+		"headless-obyte": "git+https://github.com/byteball/headless-obyte.git#aa",
+		"ocore": "git+https://github.com/byteball/ocore.git#rocks-and-formulas",
+		"pug": "2.0.4",
+		"sqlite3": "4.1.0"
+	},
+	"scripts": {
+	  "test": "echo \"Error: no test specified\" && exit 1",
+	  "start": "node start.js"
+	},
+	"devDependencies": {
+		"nodemon": "1.19.4"
+	}
+}

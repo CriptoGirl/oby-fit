@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= `${title}`
+    include vendorScripts.pug
+
+  body
+    div.fixed-top
+      include header.pug
+      include menu.pug
+
+    div.container-fluid
+      include header.pug
+      include menu.pug
+
+      block content
+
+    include footer.pug
