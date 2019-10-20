@@ -1,0 +1,124 @@
+//Check in explorer: https://testnetexplorer.obyte.org/#RJo3m30RbBJ/OHGm8lNEKF7KlhxDs8VxV0Kttf7uTeQ=
+//Agent address: IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L
+
+{
+  init: `{
+		// ============================================================
+		// OBYFIT AA from Whistling Frogs
+    // ============================================================
+    // Deposit 1,020,000 bytes and allow connection to Google Fit.
+    // Walk 10,000 steps a day to earn back up to 10,000 bytes a day.
+    // Walk 70,000 steps in 7 days to earn back 30,000 bytes bonus.
+    // ============================================================
+
+    // challenge parameters
+    $obyfit_wallet = 'QUONK7CUHPTGLNTZ6JE57SDVSFVDBCMM';
+    $fees = 5000; // should be enough for AA to pay for 8 transactions
+    $commission = 20000 - $fees; // 20,000 bytes - $5,000 bytes
+    $prize = 1000000;  // 1,000,000 bytes
+    $expected_amnt = $prize + $commission + $fees;  // amount that user has to sent to start
+    $daily_goal = 10000; // daily steps goal is 10,000 steps
+    $duration = 7; // challenge duration is 7 days
+    $total_goal = $daily_goal * $duration;  // total goad is 70,000 steps
+
+    // challenge variables
+    if (trigger.initial_address != $obyfit_wallet) {
+      // checking user input
+      if ( var[trigger.initial_address] ) bounce('Prize already received');
+      if ( trigger.output[[asset=base]] < $expected_amnt ) bounce('Prize is too small.');
+      if ( trigger.output[[asset=base]] > $expected_amnt ) bounce('Prize is too big.');
+      // setting variables
+      $user_wallet = trigger.initial_address;
+      $day_nb = 0;
+    }
+    else {
+      $user_wallet = trigger.data.user_wallet;
+      //if (trigger.data.user_steps) return;
+      $user_steps = (trigger.data.user_steps <= $daily_goal) ? trigger.data.user_steps : $daily_goal;
+      $day_nb = trigger.data.day_nb;
+      $user_total_steps = trigger.data.user_total_steps;
+      $new_challenge = false;
+    }
+  }`,
+  messages: {
+    cases: [
+      { // case A: new Challange
+        if: `{$day_nb == 0}`,
+        messages: [
+          {
+            app: 'payment',
+            payload: {
+              asset: 'base',
+              outputs: [
+                { address: '{ $obyfit_wallet }', amount: '{ $commission }' }
+              ]
+            }
+          },
+          {
+            app: 'state',
+            state: `{
+              var[$user_wallet] = $prize;
+              response['message'] = 'Starting your walking challenge.';
+            }`
+          }
+        ]
+      }, // case A
+      { // case B: Challenge is running: make payment
+        if: `{$day_nb > 0 AND $day_nb < $duration AND $user_steps > 0}`,
+        messages: [
+          {
+            app: 'payment',
+            payload: {
+              asset: 'base',
+              outputs: [
+                { address: '{ $user_wallet }', amount: '{ $user_steps }' }
+              ]
+            }
+          },
+          {
+            app: 'state',
+            state: `{
+              var[$user_wallet] -= $user_steps;
+              response['message'] = 'Keep on walking';
+            }`
+          }
+        ]
+      }, // case B
+      { // case C: challenge is finished: make payments
+        if: `{$day_nb == $duration}`,
+        messages: [
+          {
+            app: 'payment',
+            payload: {
+              cases: [
+                { // case 1: the overall goal has been reached
+                  if: `{ ( $user_total_steps >= $total_goal ) }`,
+                  payload: {
+                    asset: 'base',
+                    outputs: [
+                      { address: '{ $user_wallet }', amount: '{ var[$user_wallet] }' }
+                    ]
+                  }
+                },
+                {  // case 2: the overall goal has not been reached
+                  if: `{ ( $user_total_steps < $total_goal AND $user_steps > 0 ) }`,
+                  payload: {
+                    asset: 'base',
+                    outputs: [ { address: '{ $user_wallet }', amount: '{ $user_steps }' } ]
+                  }
+                }
+              ] // payload cases
+            } // payloads
+          },  //
+          { // Chalange Finished: state
+            app: 'state',
+            state: `{
+              var[$user_wallet] = '';
+              response['message'] = 'Challenge finished.';
+            }`
+          } // Challenge Finished: state
+        ] // case C messages
+      } // case C
+    ] // cases
+  } // messages
+}

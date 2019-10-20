@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 
 // routes
 const home = require('../routes/home');
-// custody
-const custodyPosting = require('../routes/custodyPosting');
-const custodySearch = require('../routes/custodySearch');
-// accounting
+// set-up pages
+const sign_up = require('../routes/sign_up');
+const settings = require('../routes/settings');
+// info pages
 const terms = require('../routes/terms');
-const accountSearch = require('../routes/accountSearch');
+const privacy = require('../routes/privacy');
 
 app.set('../views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,11 +19,11 @@ app.use(express.static('resources')); //This will allow express to access any fi
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', home);
-// custody
-app.use('/custodyPosting', custodyPosting);
-app.use('/custodySearch', custodySearch);
-// accounting
+// set-up pages
+app.use('/sign_up', sign_up);
+app.use('/settings', settings);
+// info pages
 app.use('/terms', terms);
-app.use('/accountSearch', accountSearch);
+app.use('/privacy', privacy);
 
 module.exports = app;
