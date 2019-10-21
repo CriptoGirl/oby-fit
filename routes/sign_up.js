@@ -14,7 +14,7 @@ const oauth2Client = new google.auth.OAuth2(
   obyfit_redirect_url
 );
 
-async function refreshToken(google_authorization_code) {
+async function refreshToken(google_authorization_code, res) {
   //Retrieve access token
   // This will provide an object with the access_token and refresh_token.
   //const {tokens} = oauth2Client.getToken(google_authorization_code);
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
     // Google Authorisation page returned authorisation code, e.g.
     // code=4/sQF_IxMK5-GF-wBlOPNyJtzVg-kKg2lpFU1hCWBJ5lSC7tP1R9KdcYu_sYKFTqp5h-OuO_zBEXf83nSal7Y1psw&scope=https://www.googleapis.com/auth/fitness.activity.read
     let google_authorization_code = qdata.code;
-    refreshToken(google_authorization_code);
+    refreshToken(google_authorization_code, res);
   }
   else if (qdata.error) {
     // Google Authorisation page returned an error
