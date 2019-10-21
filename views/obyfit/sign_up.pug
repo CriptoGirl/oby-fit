@@ -50,9 +50,6 @@ block content
       br
       h5 Step 1. Authorise ObyFit access to your Google Fit data
       p Thank you for granting ObyFit read access to your Google Fit data.
-      div.form-group
-        div.form-row
-            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
       br
       h5 Step 2. Specify your Obyte testnet wallet address
       p Please provide us with your Obyte testnet wallet address.
@@ -75,24 +72,9 @@ block content
     form(method='POST' action='/sign_up')
       h5 Step 1. Authorise ObyFit access to your Google Fit data
       p Thank you for granting ObyFit read access to your Google Fit data.
-      div.form-group
-        div.form-row
-            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
       br
       h5 Step 2. Specify your Obyte testnet wallet address
       p Thank you for providing your Obyte testnet wallet address.
-      div.form-group
-        div.form-row
-          div.col-md-3
-            label(for='wallet' ) Obyte Wallet Address:
-            input.form-control(
-              id='wallet'
-              name='wallet'
-              readonly
-            )
-      div.form-group
-        div.form-row
-          button.btn.btn-primary.ml-2(type='submit' disabled) Save
       br
       div.alert.alert-success.alert-dismissible(id='result')
         a.close( href='#' data-dismiss='alert' ) ×
