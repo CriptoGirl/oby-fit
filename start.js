@@ -20,7 +20,7 @@ eventBus.once('headless_wallet_ready', () => {
 	const app = require('./startup/app');
 	// !!!!!!!!!!!! Change for deployment !!!!!!!!!!!!!!!! //
 	//const server = app.listen(process.env.PORT || 5000, () => {
-	const server = app.listen(process.env.PORT || 80, () => {
+	const server = app.listen(process.env.PORT || 3000, () => {
 	  console.log(`Express is running on port ${server.address().port}`);
 	});
 
