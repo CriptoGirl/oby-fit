@@ -14,6 +14,21 @@ const oauth2Client = new google.auth.OAuth2(
   obyfit_redirect_url
 );
 
+async function refreshToken(code) {
+  //Retrieve access token
+  // This will provide an object with the access_token and refresh_token.
+  //const {tokens} = oauth2Client.getToken(google_authorization_code);
+  const {tokens} = await oauth2Client.getToken(google_authorization_code)
+  oauth2Client.setCredentials(tokens);
+  let refresh_token = '';
+  if (tokens) {
+    if (tokens.refresh_token) refresh_token = tokens.refresh_token;
+  }
+  //const refresh_token = tokens.refresh_token;
+  //res.send('refresh_token: '+ refresh_token);
+  res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
+    google_authorization_code, refresh_token });
+}
 
 router.get('/', (req, res) => {
 
@@ -25,19 +40,7 @@ router.get('/', (req, res) => {
     // Google Authorisation page returned authorisation code, e.g.
     // code=4/sQF_IxMK5-GF-wBlOPNyJtzVg-kKg2lpFU1hCWBJ5lSC7tP1R9KdcYu_sYKFTqp5h-OuO_zBEXf83nSal7Y1psw&scope=https://www.googleapis.com/auth/fitness.activity.read
     let google_authorization_code = qdata.code;
-    //Retrieve access token
-    // This will provide an object with the access_token and refresh_token.
-    //const {tokens} = await oauth2Client.getToken(google_authorization_code)
-    const {tokens} = oauth2Client.getToken(google_authorization_code);
-    oauth2Client.setCredentials(tokens);
-    let refresh_token = '';
-    if (tokens) {
-      if (tokens.refresh_token) refresh_token = tokens.refresh_token;
-    }
-    //const refresh_token = tokens.refresh_token;
-    //res.send('refresh_token: '+ refresh_token);
-    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
-      google_authorization_code, refresh_token });
+    refreshToken(google_authorization_code);
   }
   else if (qdata.error) {
     // Google Authorisation page returned an error
