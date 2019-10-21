@@ -17,15 +17,17 @@ const oauth2Client = new google.auth.OAuth2(
 async function refreshToken(google_authorization_code, res) {
   //Retrieve access token
   // This will provide an object with the access_token and refresh_token.
-  //const {tokens} = oauth2Client.getToken(google_authorization_code);
   const {tokens} = await oauth2Client.getToken(google_authorization_code)
   oauth2Client.setCredentials(tokens);
   let refresh_token = '';
   if (tokens) {
-    if (tokens.refresh_token) refresh_token = tokens.refresh_token;
+    if (tokens.refresh_token) {
+      refresh_token = tokens.refresh_token;
+      let step_2 = true;
+      res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
+        google_authorization_code, refresh_token, step_2 });
+    }
   }
-  res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
-    google_authorization_code, refresh_token, step_2 });
 }
 
 router.get('/', (req, res) => {
@@ -72,15 +74,6 @@ router.post('/', (req, res) => {
   // getting authorisation from Google for Google Fit API connection
   if (form_action === 'authorise') {
     let authorise = form_action;
-    // // google
-    // const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
-    // const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
-    // const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:3000/sign_up';
-    // const oauth2Client = new google.auth.OAuth2(
-    //   obyfit_client_id,
-    //   obyfit_client_secret,
-    //   obyfit_redirect_url
-    // );
     // generate a url that asks permissions for Blogger and Google Calendar scopes
     const scopes = [
       'https://www.googleapis.com/auth/fitness.activity.read'
@@ -91,17 +84,8 @@ router.post('/', (req, res) => {
       // If you only need one scope you can pass it as a string
       scope: scopes
     });
-
     res.redirect(googleURL);
-    //
-    //res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet, email, authorise });
   }
-
-  //res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet, email });
-
-  // testing post router
-  //res.send('Posted');
-  //res.render('obyfit/sign_up', { title: 'User data is saved', error, result });
 })
 
 module.exports = router;
