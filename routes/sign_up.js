@@ -30,9 +30,9 @@ router.get('/', (req, res) => {
     //const {tokens} = await oauth2Client.getToken(google_authorization_code)
     const {tokens} = oauth2Client.getToken(google_authorization_code);
     oauth2Client.setCredentials(tokens);
-    const refresh_token = tokens.refresh_token;
-    res.send('refresh_token: '+ refresh_token);
-    //res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', google_authorization_code, tokens });
+    //const refresh_token = tokens.refresh_token;
+    //res.send('refresh_token: '+ refresh_token);
+    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', google_authorization_code, tokens });
   }
   else if (qdata.error) {
     // Google Authorisation page returned an error
