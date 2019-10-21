@@ -8,50 +8,19 @@ block content
 
   // JavaScript section
 
-  // Form sections
-
-  // Google Authorisation Form
-  if google_auth_request_pg
+  // Form section
+  if user_data_form
     form(method='POST' action='/sign_up')
-      input.form-control(
-       id='form_action'
-       name='form_action'
-       value='authorise'
-       type='hidden'
-      )
-      br
-      h5 Step 1. Authorise ObyFit access to your Google Fit data
-      p Please click on Authorise button and grant ObyFit read access to your Google Fit data.
       div.form-group
         div.form-row
-            button.btn.btn-primary.ml-2(type='submit') Authorise
-
-  // User Data Form
-  if google_authorization_code
-    form(method='POST' action='/sign_up')
-      input(
-       id='form_action'
-       name='form_action'
-       value='save_user_data'
-       type='hidden'
-      )
-      input(
-       id='google_authorization_code'
-       name='google_authorization_code'
-       value=google_authorization_code
-       type='hidden'
-      )
-      br
-      h5 Step 1. Authorise ObyFit access to your Google Fit data
-      p Thank you for granting ObyFit read access to your Google Fit data.
-      div.form-group
-        div.form-row
-            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
-      br
-      h5 Step 2. Specify your Obyte testnet wallet address
-      p Please provide us with your Obyte testnet wallet address.
-      div.form-group
-        div.form-row
+          div.col-md-3
+            label(for='email' ) E-mail:
+            input.form-control(
+              id='email'
+              name='email'
+              type='email'
+              required
+            )
           div.col-md-3
             label(for='wallet' ) Obyte Wallet Address:
             input.form-control(
@@ -60,10 +29,18 @@ block content
               required
             )
         hr
+        input.form-control(
+         id='state'
+         name='state'
+         value='sign_up'
+         type='hidden'
+        )
       div.form-group
         div.form-row
           div.btn-toolbar
-            button.btn.btn-primary.ml-2(type='submit') Save
+            button.btn.btn-primary.ml-2(type='submit') Sign up
+            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
+            button.btn.btn-primary.ml-2(type='submit' disabled) Send Prize
 
   // Result Section
   if result
