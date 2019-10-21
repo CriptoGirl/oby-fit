@@ -36,7 +36,8 @@ router.get('/', (req, res) => {
     }
     //const refresh_token = tokens.refresh_token;
     //res.send('refresh_token: '+ refresh_token);
-    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', google_authorization_code, tokens });
+    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
+      google_authorization_code, refresh_token });
   }
   else if (qdata.error) {
     // Google Authorisation page returned an error
