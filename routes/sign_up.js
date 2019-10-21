@@ -65,9 +65,10 @@ router.post('/', (req, res) => {
       ( wallet, authorization_code, refresh_token ) VALUES (?,?,?)`,
       [ wallet, google_authorization_code, refresh_token ],
       function (response) {
+        let step_3 = true;
         if (response.insertId && response.affectedRows) result = 'User data has been sucessfully saved';
         else error = 'Can not save user data';
-        res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet });
+        res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet, step_3 });
     });
   }
 

@@ -26,7 +26,7 @@ block content
         div.form-row
             button.btn.btn-primary.ml-2(type='submit') Authorise
 
-  // User Data Form
+  // Step 2 : User Data Form
   if step_2
     form(method='POST' action='/sign_up')
       input(
@@ -39,11 +39,13 @@ block content
        id='google_authorization_code'
        name='google_authorization_code'
        value=google_authorization_code
+       type='hidden'
       )
       input(
        id='refresh_token'
        name='refresh_token'
        value=refresh_token
+       type='hidden'
       )
       br
       h5 Step 1. Authorise ObyFit access to your Google Fit data
@@ -63,95 +65,45 @@ block content
               name='wallet'
               required
             )
-        hr
       div.form-group
         div.form-row
           div.btn-toolbar
             button.btn.btn-primary.ml-2(type='submit') Save
 
-  // Result Section
-  if result
+  // Step 3 : Result Section
+  if step_3
     form(method='POST' action='/sign_up')
+      h5 Step 1. Authorise ObyFit access to your Google Fit data
+      p Thank you for granting ObyFit read access to your Google Fit data.
       div.form-group
         div.form-row
-          div.col-md-3
-            label(for='email' ) E-mail:
-            input.form-control(
-              id='email'
-              name='email'
-              type='email'
-              value= email
-              readonly
-            )
+            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
+      br
+      h5 Step 2. Specify your Obyte testnet wallet address
+      p Thank you for providing your Obyte testnet wallet address.
+      div.form-group
+        div.form-row
           div.col-md-3
             label(for='wallet' ) Obyte Wallet Address:
             input.form-control(
               id='wallet'
               name='wallet'
               readonly
-              value= wallet
             )
-        hr
-        input.form-control(
-         id='state'
-         name='state'
-         value='authorise'
-         type='hidden'
-        )
       div.form-group
         div.form-row
-          div.btn-toolbar
-            button.btn.btn-primary.ml-2(type='submit' disabled) Sign up
-            button.btn.btn-primary.ml-2(type='submit') Authorise
-            button.btn.btn-primary.ml-2(type='submit' disabled) Send Prize
+          button.btn.btn-primary.ml-2(type='submit' disabled) Save
       br
       div.alert.alert-success.alert-dismissible(id='result')
         a.close( href='#' data-dismiss='alert' ) ×
         h4 User Data is saved !
         p= result
+      h5 Step 3. Deposit your prize to the ObyFit Autonomous Agent
+      p Send 1,020,000 bytes to the ObyFit Autonomus Agent to enter the 7-day walking challenge.
+      div.form-group
+        div.form-row
+          a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
 
-  // Send Bytes to AA Section
-  if authorise
-    form(method='POST' action='/sign_up')
-      div.form-group
-        div.form-row
-          div.col-md-3
-            label(for='email' ) E-mail:
-            input.form-control(
-              id='email'
-              name='email'
-              type='email'
-              value= email
-              readonly
-            )
-          div.col-md-3
-            label(for='wallet' ) Obyte Wallet Address:
-            input.form-control(
-              id='wallet'
-              name='wallet'
-              readonly
-              value= wallet
-            )
-        hr
-        input.form-control(
-         id='state'
-         name='state'
-         value='authorise'
-         type='hidden'
-        )
-      div.form-group
-        div.form-row
-          div.btn-toolbar
-            button.btn.btn-primary.ml-2(type='submit' disabled) Sign up
-            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
-            a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
-            //button.btn.btn-primary.ml-2(type='submit') Send Prize
-    br
-    div.alert.alert-info.alert-dismissible(id='info')
-      a.close( href='#' data-dismiss='alert' ) ×
-      strong Send Prize to AA:
-      br
-      span Send 1,020,000 bytes to the ObyFit Autonomus Agent to enter the 7-day walking challenge.
 
   if error
     form(method='POST' action='/sign_up')
