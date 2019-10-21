@@ -24,15 +24,11 @@ async function refreshToken(google_authorization_code, res) {
   if (tokens) {
     if (tokens.refresh_token) refresh_token = tokens.refresh_token;
   }
-  //const refresh_token = tokens.refresh_token;
-  //res.send('refresh_token: '+ refresh_token);
   res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page',
-    google_authorization_code, refresh_token });
+    google_authorization_code, refresh_token, step_2 });
 }
 
 router.get('/', (req, res) => {
-
-  // Google integration
   // check if the calling url contains response from Google
   var q = url.parse(req.url, true);
   var qdata = q.query; //returns an object: {code: '4/sQF_....' }
@@ -46,9 +42,9 @@ router.get('/', (req, res) => {
     // Google Authorisation page returned an error
   }
   else {
-    //res.send('qdata code is false: '+qdata.code);
-    let google_auth_request_pg = true;
-    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', google_auth_request_pg });
+    //res.send('test');
+    let step_1 = true;
+    res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', step_1 });
   }
 });
 
@@ -57,14 +53,15 @@ router.post('/', (req, res) => {
   let error, result;
   let wallet = req.body.wallet;
   let google_authorization_code = req.body.google_authorization_code;
+  let refresh_token = req.refresh_token;
   let form_action = req.body.form_action;
   // saving user Data
   // check that wallet address is a valid address
   // check that we do not have this record already
   if (form_action === 'save_user_data') {
     db.query(`INSERT ` + db.getIgnore() + ` INTO xwf_obyfit_user_challenge
-      ( wallet, google_authorization_code ) VALUES (?,?)`,
-      [ wallet, google_authorization_code ],
+      ( wallet, authorization_code, refresh_token ) VALUES (?,?,?)`,
+      [ wallet, google_authorization_code, refresh_token ],
       function (response) {
         if (response.insertId && response.affectedRows) result = 'User data has been sucessfully saved';
         else error = 'Can not save user data';

@@ -10,8 +10,8 @@ block content
 
   // Form sections
 
-  // Google Authorisation Form
-  if google_auth_request_pg
+  // Step 1 : Google Authorisation Form
+  if step_1
     form(method='POST' action='/sign_up')
       input.form-control(
        id='form_action'
@@ -27,7 +27,7 @@ block content
             button.btn.btn-primary.ml-2(type='submit') Authorise
 
   // User Data Form
-  if google_authorization_code
+  if step_2
     form(method='POST' action='/sign_up')
       input(
        id='form_action'
