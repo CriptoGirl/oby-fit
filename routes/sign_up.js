@@ -14,7 +14,7 @@ const oauth2Client = new google.auth.OAuth2(
   obyfit_redirect_url
 );
 
-async function refreshToken(code) {
+async function refreshToken(google_authorization_code) {
   //Retrieve access token
   // This will provide an object with the access_token and refresh_token.
   //const {tokens} = oauth2Client.getToken(google_authorization_code);
