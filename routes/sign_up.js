@@ -1,9 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const db = require('ocore/db');
+const url = require('url');
 // Google API libraries integration
 const {google} = require('googleapis');
-const url = require('url');
+// google
+const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
+const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
+const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
+const oauth2Client = new google.auth.OAuth2(
+  obyfit_client_id,
+  obyfit_client_secret,
+  obyfit_redirect_url
+);
+
 
 router.get('/', (req, res) => {
 
@@ -57,15 +67,15 @@ router.post('/', (req, res) => {
   // getting authorisation from Google for Google Fit API connection
   if (form_action === 'authorise') {
     let authorise = form_action;
-    // google
-    const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
-    const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
-    const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:3000/sign_up';
-    const oauth2Client = new google.auth.OAuth2(
-      obyfit_client_id,
-      obyfit_client_secret,
-      obyfit_redirect_url
-    );
+    // // google
+    // const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
+    // const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
+    // const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:3000/sign_up';
+    // const oauth2Client = new google.auth.OAuth2(
+    //   obyfit_client_id,
+    //   obyfit_client_secret,
+    //   obyfit_redirect_url
+    // );
     // generate a url that asks permissions for Blogger and Google Calendar scopes
     const scopes = [
       'https://www.googleapis.com/auth/fitness.activity.read'
