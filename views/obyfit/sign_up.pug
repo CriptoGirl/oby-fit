@@ -39,7 +39,11 @@ block content
        id='google_authorization_code'
        name='google_authorization_code'
        value=google_authorization_code
-       type='hidden'
+      )
+      input(
+       id='refresh_token'
+       name='refresh_token'
+       value=refresh_token
       )
       br
       h5 Step 1. Authorise ObyFit access to your Google Fit data
@@ -48,8 +52,6 @@ block content
         div.form-row
             button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
       br
-      p Refresh token
-      p=refresh_token
       h5 Step 2. Specify your Obyte testnet wallet address
       p Please provide us with your Obyte testnet wallet address.
       div.form-group
