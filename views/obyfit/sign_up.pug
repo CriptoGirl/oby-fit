@@ -51,6 +51,11 @@ block content
       h5 Step 1. Authorise ObyFit access to your Google Fit data
       p Thank you for granting ObyFit read access to your Google Fit data.
       br
+      div.alert.alert-success.alert-dismissible(id='result')
+        a.close( href='#' data-dismiss='alert' ) ×
+        h4 Step 1 completed
+        p= Access to Google Fit data granted.
+      br
       h5 Step 2. Specify your Obyte testnet wallet address
       p Please provide us with your Obyte testnet wallet address.
       div.form-group
@@ -73,19 +78,23 @@ block content
       h5 Step 1. Authorise ObyFit access to your Google Fit data
       p Thank you for granting ObyFit read access to your Google Fit data.
       br
+      div.alert.alert-success.alert-dismissible(id='result')
+        a.close( href='#' data-dismiss='alert' ) ×
+        h4 Step 1 completed
+        p= Access to Google Fit data granted.
+      br
       h5 Step 2. Specify your Obyte testnet wallet address
       p Thank you for providing your Obyte testnet wallet address.
       br
       div.alert.alert-success.alert-dismissible(id='result')
         a.close( href='#' data-dismiss='alert' ) ×
-        h4 User Data is saved !
-        p= result
+        h4 Step 2 completed
+        p= Your wallet address data is saved.
       h5 Step 3. Deposit your prize to the ObyFit Autonomous Agent
       p Send 1,020,000 bytes to the ObyFit Autonomus Agent to enter the 7-day walking challenge.
       div.form-group
         div.form-row
           a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
-
 
   if error
     form(method='POST' action='/sign_up')
