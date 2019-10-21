@@ -30,9 +30,9 @@ router.get('/', (req, res) => {
     //const {tokens} = await oauth2Client.getToken(google_authorization_code)
     const {tokens} = oauth2Client.getToken(google_authorization_code);
     oauth2Client.setCredentials(tokens);
+    let refresh_token = '';
     if (tokens) {
-      if (tokens.refresh_token) let refresh_token = tokens.refresh_token;
-      else let refresh_token = '';
+      if (tokens.refresh_token) refresh_token = tokens.refresh_token;
     }
     //const refresh_token = tokens.refresh_token;
     //res.send('refresh_token: '+ refresh_token);
