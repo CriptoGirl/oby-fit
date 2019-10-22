@@ -38,18 +38,20 @@ router.post('/', (req, res) => {
         refresh_token: row.refresh_token
       });
       var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
-      fitness.users.dataset.aggregate({
-        userId: "me",
-        requestBody: {
-          "aggregateBy": [{
-            "dataTypeName": "com.google.step_count.delta",
-            "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-          }],
-          "bucketByTime": { "durationMillis": 86400000 },
-          "startTimeMillis": 1438705622000,
-          "endTimeMillis": 1439310422000
-        }
-      });
+      var test =
+        fitness.users.dataset.aggregate({
+          userId: "me",
+          requestBody: {
+            "aggregateBy": [{
+              "dataTypeName": "com.google.step_count.delta",
+              "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+            }],
+            "bucketByTime": { "durationMillis": 86400000 },
+            "startTimeMillis": 1438705622000,
+            "endTimeMillis": 1439310422000
+          }
+        });
+      if (test) res.send('Test has some data');
     });
   });
   getUserData(res);
