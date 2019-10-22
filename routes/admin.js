@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
         });
       if (google_res) {
         //var google_res_obj = JSON.parse(google_res);
-        else res.send('Test has some data' + google_res);
+        res.send('Test has some data' + google_res);
       }
     });
   });
