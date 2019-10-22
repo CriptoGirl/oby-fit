@@ -84,7 +84,7 @@ router.post('/', (req, res) => {
        // }
     });
   });
-  getUserData(res);
+  //getUserData(res);
 });
 
 module.exports = router;
