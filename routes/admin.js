@@ -76,10 +76,12 @@ router.post('/', (req, res) => {
              "endTimeMillis": 1439310422000
            }
          });
-       if (google_res) {
-         //var google_res_obj = JSON.parse(google_res);
-         res.send('Test has some data' + google_res);
-       }
+       google_res.then(function(result) { res.send(result) });
+
+       // if (google_res) {
+       //   //var google_res_obj = JSON.parse(google_res);
+       //   res.send('Test has some data' + google_res);
+       // }
     });
   });
   getUserData(res);
