@@ -53,8 +53,8 @@ router.post('/', (req, res) => {
         });
       if (google_res) {
         //var google_res_obj = JSON.parse(google_res);
-        var google_point = google_res.point;
-        if (google_point) res.send('google point: '+ google_point);
+        var start = google_res.basket.startTimeMillis;
+        if (start) res.send('start time: '+ start);
         else res.send('Test has some data');
       }
     });
