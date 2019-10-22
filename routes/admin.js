@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
         refresh_token: row.refresh_token
       });
       var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
-      var test =
+      var google_res =
         fitness.users.dataset.aggregate({
           userId: "me",
           requestBody: {
@@ -51,7 +51,12 @@ router.post('/', (req, res) => {
             "endTimeMillis": 1439310422000
           }
         });
-      if (test) res.send('Test has some data');
+      if (google_res) {
+        //var google_res_obj = JSON.parse(google_res);
+        var google_point = google_res.point;
+        if (google_point) res.send('google point: '+ google_point);
+        else res.send('Test has some data');
+      }
     });
   });
   getUserData(res);
