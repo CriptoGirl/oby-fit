@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const home = require('../routes/home');
 // set-up pages
 const sign_up = require('../routes/sign_up');
-const settings = require('../routes/settings');
+const admin = require('../routes/admin');
 // info pages
 const terms = require('../routes/terms');
 const privacy = require('../routes/privacy');
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', home);
 // set-up pages
 app.use('/sign_up', sign_up);
-app.use('/settings', settings);
+app.use('/admin', admin);
 // info pages
 app.use('/terms', terms);
 app.use('/privacy', privacy);

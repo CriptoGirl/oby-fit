@@ -1,6 +1,11 @@
 // Config setting for the game
 "use strict";
 exports.aaName = "Obyte Fit AA";
+// Google Ids
+exports.obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
+exports.obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
+exports.obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
+
 //exports.minBidAmount = 1000000;  // 1,000,000 is about £0.2
 //exports.gameDuration = 60000;
 //exports.notificationFrequency = 10000;

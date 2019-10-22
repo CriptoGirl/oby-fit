@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  //<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  br
+  h2 ObyFit Admin
+
+  if error
+    br
+    p.strong= error
+
+  if result
+    // Form section
+    form(method='POST' action='/admin')
+      br
+      table.table
+        thead
+          tr
+            th Wallet
+            th Authorisation
+            th Token
+            th Start
+            th DayNb
+            th Steps
+            th TotalSteps
+            th Status
+          tbody
+            each row in result
+              tr
+                td= row.wallet
+                td= row.authorization_code
+                td= row.refresh_token
+                td= row.challenge_start
+                td= row.latest_day_nb
+                td= row.latest_day_step_count
+                td= row.total_step_count
+                td= row.updated_reason
+
+      p Manually trigger Google Fitness API call to acquire user's step count
+      div.form-group
+        div.form-row
+          button.btn.btn-primary(type='submit') Refresh
+
+    br
+    br
+    br

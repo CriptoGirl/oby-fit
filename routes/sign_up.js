@@ -4,14 +4,16 @@ const db = require('ocore/db');
 const url = require('url');
 // Google API libraries integration
 const {google} = require('googleapis');
+// Config
+const config = require('../conf_game.js');
 // google
-const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
-const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
-const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
+// const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
+// const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
+// const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
 const oauth2Client = new google.auth.OAuth2(
-  obyfit_client_id,
-  obyfit_client_secret,
-  obyfit_redirect_url
+  config.obyfit_client_id,
+  config.obyfit_client_secret,
+  config.obyfit_redirect_url
 );
 
 async function refreshToken(google_authorization_code, res) {
