@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
   getUserData(res);
 });
 
-async function getSteps(refresh_token) {
+async function getSteps(res, refresh_token) {
   oauth2Client.setCredentials({
     refresh_token: refresh_token
   });
@@ -57,7 +57,7 @@ async function getSteps(refresh_token) {
 router.post('/', (req, res) => {
   db.query(`SELECT refresh_token FROM xwf_obyfit_user_challenge`, rows => {
     rows.forEach(row => {
-      getSteps(row.refresh_token);
+      getSteps(res, row.refresh_token);
 
       // oauth2Client.setCredentials({
       //   refresh_token: row.refresh_token
