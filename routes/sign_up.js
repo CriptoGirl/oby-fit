@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
   let error, result;
   let wallet = req.body.wallet;
   let google_authorization_code = req.body.google_authorization_code;
-  let refresh_token = req.refresh_token;
+  let refresh_token = req.body.refresh_token;
   let form_action = req.body.form_action;
   // saving user Data
   // check that wallet address is a valid address
