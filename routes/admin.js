@@ -57,29 +57,29 @@ async function getSteps(res, refresh_token) {
 router.post('/', (req, res) => {
   db.query(`SELECT refresh_token FROM xwf_obyfit_user_challenge`, rows => {
     rows.forEach(row => {
-      getSteps(res, row.refresh_token);
+      //getSteps(res, row.refresh_token);
 
-      // oauth2Client.setCredentials({
-      //   refresh_token: row.refresh_token
-      // });
-      // var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
-      // var google_res =
-      //   fitness.users.dataset.aggregate({
-      //     userId: "me",
-      //     requestBody: {
-      //       "aggregateBy": [{
-      //         "dataTypeName": "com.google.step_count.delta",
-      //         "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-      //       }],
-      //       "bucketByTime": { "durationMillis": 86400000 },
-      //       "startTimeMillis": 1438705622000,
-      //       "endTimeMillis": 1439310422000
-      //     }
-      //   });
-      // if (google_res) {
-      //   //var google_res_obj = JSON.parse(google_res);
-      //   res.send('Test has some data' + google_res);
-      // }
+       oauth2Client.setCredentials({
+         refresh_token: row.refresh_token
+       });
+       var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
+       var google_res =
+         fitness.users.dataset.aggregate({
+           userId: "me",
+           requestBody: {
+             "aggregateBy": [{
+               "dataTypeName": "com.google.step_count.delta",
+               "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+             }],
+             "bucketByTime": { "durationMillis": 86400000 },
+             "startTimeMillis": 1438705622000,
+             "endTimeMillis": 1439310422000
+           }
+         });
+       if (google_res) {
+         //var google_res_obj = JSON.parse(google_res);
+         res.send('Test has some data' + google_res);
+       }
     });
   });
   getUserData(res);
