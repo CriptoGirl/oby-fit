@@ -58,30 +58,32 @@ router.post('/', (req, res) => {
   db.query(`SELECT refresh_token FROM xwf_obyfit_user_challenge`, rows => {
     rows.forEach(row => {
       //getSteps(res, row.refresh_token);
+      let current_date_time = new Date().getTime();
+      // "startTimeMillis": 1438705622000,
+      // "endTimeMillis": 1439310422000
+      oauth2Client.setCredentials({
+       refresh_token: row.refresh_token
+      });
+      var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
+      var google_res =
+        fitness.users.dataset.aggregate({
+          userId: "me",
+          requestBody: {
+            "aggregateBy": [{
+              "dataTypeName": "com.google.step_count.delta",
+              "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+            }],
+            "bucketByTime": { "durationMillis": 86400000 },
+            "startTimeMillis": current_date_time - 86400000,
+            "endTimeMillis": current_date_time
+          }
+        });
+      return google_res.then(function(result) { res.send(result) });
 
-       oauth2Client.setCredentials({
-         refresh_token: row.refresh_token
-       });
-       var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
-       var google_res =
-         fitness.users.dataset.aggregate({
-           userId: "me",
-           requestBody: {
-             "aggregateBy": [{
-               "dataTypeName": "com.google.step_count.delta",
-               "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-             }],
-             "bucketByTime": { "durationMillis": 86400000 },
-             "startTimeMillis": 1438705622000,
-             "endTimeMillis": 1439310422000
-           }
-         });
-       return google_res.then(function(result) { res.send(result) });
-
-       // if (google_res) {
-       //   //var google_res_obj = JSON.parse(google_res);
-       //   res.send('Test has some data' + google_res);
-       // }
+      // if (google_res) {
+      //   //var google_res_obj = JSON.parse(google_res);
+      //   res.send('Test has some data' + google_res);
+      // }
     });
   });
   //getUserData(res);
