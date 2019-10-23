@@ -11,6 +11,7 @@ function startScheduler() {
 }
 
 function runJob() {
+  console.error('running funJob function');
   // tick-tock
   // check if any chalange period ended and request steps data from Google
   db.query(`SELECT wallet, refresh_token, challenge_start, latest_day_nb, total_step_count
