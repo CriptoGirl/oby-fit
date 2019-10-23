@@ -15,8 +15,17 @@ const oauth2Client = new google.auth.OAuth2(
 
 function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_step_count) {
   console.error('TEST: inside getSteps function. wallet : ' + wallet);
-  let period_start = challenge_start + (config.period * latest_day_nb);
-  let period_end = period_start + config.period;
+  let period_start, period_end;
+
+  // ***************** TEST **********************//
+  if (latest_day_nb === 0) {
+    period_start = 1570122611880;
+    period_end = challenge_start + (config.period * latest_day_nb) + config.period;
+  }
+  else {
+    period_start = challenge_start + (config.period * latest_day_nb);
+    let period_end = period_start + config.period;
+  }
 
   oauth2Client.setCredentials({
    refresh_token: refresh_token
