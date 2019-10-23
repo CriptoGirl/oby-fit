@@ -25,8 +25,9 @@ eventBus.once('headless_wallet_ready', () => {
 	});
 
 	// add AA's address to the watched list of addresses
-	walletGeneral.addWatchedAddress(config.aaAddress, function() {
-    console.log('====== AA address: ' + config.aaAddress + ' is added to the list of watched addresses');
+	let aaAddress = config.aaAddress;
+	walletGeneral.addWatchedAddress(aaAddress, function() {
+    console.log('====== AA address: ' + aaAddress + ' is added to the list of watched addresses');
 	});
 
 	// user pairs his device with the bot

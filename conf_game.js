@@ -28,4 +28,4 @@ exports.aaAddress = "VA2RPMV55IEHSJMB2SBIQKLSAXVLT3FT"; // AA version 0.0.1 - 23
 //exports.aaAddress = "RQI2WE6EVSK6CY3NRNLHGQXUNJGZGU35"; // AA version 1.0 - 9 Oct 2019
 
 // ***************** AA HISTORY ******************** //
-exports.aaAddress = "IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L"; // AA version 0.0.1 - 20 Oct 2019
+//exports.aaAddress = "IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L"; // AA version 0.0.1 - 20 Oct 2019
