@@ -22,7 +22,7 @@ function newTransactions(arrUnits) {
             });
             // ** Update db with chalange start time ** //
             let current_date_time = new Date().getTime();
-            //current_date_time -= 3600000; // time zone diff
+            current_date_time -= 7200000; // time zone diff: 2 hours back
             db.query(`UPDATE xwf_obyfit_user_challenge SET
               challenge_start=?, latest_day_nb=0, latest_day_step_count=0, total_step_count=0,
               updated_reason='Running',
