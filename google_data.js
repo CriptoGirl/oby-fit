@@ -1,7 +1,7 @@
 // Obyte imports (libraries)
 const db = require('ocore/db');
 // Scheduler
-var schedule = require('node-schedule');
+//var schedule = require('node-schedule');
 // Config
 const config = require('./conf_game.js');
 // Google API libraries integration
