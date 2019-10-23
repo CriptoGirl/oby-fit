@@ -60,7 +60,8 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
       latest_day_nb += 1;
       total_step_count += steps;
       let reason = 'Running';
-      if (latest_day_nb = 7) reason = 'Ended'
+      if (latest_day_nb === 7) reason = 'Ended';
+
       db.query(`UPDATE xwf_obyfit_user_challenge SET
         latest_day_nb=?, latest_day_step_count=?,
         total_step_count=?, updated_reason=?,
