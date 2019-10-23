@@ -36,7 +36,8 @@ block content
       p Send 1,020,000 bytes to the ObyFit Autonomus Agent to enter the 7-day walking challenge.
       div.form-group
         div.form-row
-          a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
+          a.button.btn.btn-primary.ml-2(href="byteball-tn:"+aaAddress+"?amount=1020000&amp;asset=base")='Send Prize'
+          //a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
 
   if error
     form(method='POST' action='/new_challenge')
