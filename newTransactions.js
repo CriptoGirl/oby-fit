@@ -23,7 +23,8 @@ function newTransactions(arrUnits) {
             // ** Update db with chalange start time ** //
             let current_date_time = new Date().getTime();
             db.query(`UPDATE xwf_obyfit_user_challenge SET
-              challenge_start=?, updated_reason='Running',
+              challenge_start=?, latest_day_nb=0, latest_day_step_count=0, total_step_count=0,
+              updated_reason='Running',
               updated_source='Obyte'
               WHERE wallet=?`,
               [ current_date_time, unitUserWallet ]);
