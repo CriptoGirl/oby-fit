@@ -1,0 +1,71 @@
+{
+  "config":{
+    "url":"https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
+    "method":"POST",
+    "data":{
+      "aggregateBy":[{
+        "dataTypeName":"com.google.step_count.delta",
+        "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+      }],
+      "bucketByTime":{"durationMillis":86400000},
+      "startTimeMillis":1571684855197,
+      "endTimeMillis":1571771255197},
+      "headers":{
+        "x-goog-api-client":"gdcl/3.1.1 gl-node/10.16.3 auth/5.5.0",
+        "Accept-Encoding":"gzip",
+        "User-Agent":"google-api-nodejs-client/3.1.1 (gzip)",
+        "Authorization":"Bearer ya29.Il-iB_oYrn1Rw1lg9kSoxEpvKCST7qAE0V-oXnXcb9tlrKdmtyV3qWRNY490wQxkNOEv-LtVRcCAzlcbzF9YBHLnJEgYMV_L5dZa1405kboaB0iZKVXnJbUSRntDWQf9Sw",
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      },
+      "params":{},
+      "retry":true,
+      "body":"{
+        \"aggregateBy\":[{\"dataTypeName\":\"com.google.step_count.delta\",\"dataSourceId\":\"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps\"}],
+        \"bucketByTime\":{\"durationMillis\":86400000},
+        \"startTimeMillis\":1571684855197,
+        \"endTimeMillis\":1571771255197
+      }",
+      "responseType":"json"
+    },
+==========================================================================
+    "data":{
+      "bucket":[{
+        "startTimeMillis":"1571684855197",
+        "endTimeMillis":"1571771255197",
+        "dataset":[{
+          "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:aggregated",
+          "point":[{
+            "startTimeNanos":"1571744520000000000",
+            "endTimeNanos":"1571748120000000000",
+            "dataTypeName":"com.google.step_count.delta",
+            "originDataSourceId":"raw:com.google.activity.segment:com.google.android.apps.fitness:user_input",
+            "value":[{
+              "intVal":6000,
+              "mapVal":[]
+            }]
+          }]
+        }]
+      }]
+    },
+============================================================================
+    "headers":{
+      "alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000",
+      "cache-control":"no-cache, no-store, max-age=0, must-revalidate",
+      "connection":"close",
+      "content-encoding":"gzip",
+      "content-type":"application/json; charset=UTF-8",
+      "date":"Tue, 22 Oct 2019 19:07:35 GMT",
+      "etag":"\"_qznSVu2S6Fbl_pHOOcyOTY6OAw/-DCf79gIvk06l2bKGblCfL_IS4I\"",
+      "expires":"Mon, 01 Jan 1990 00:00:00 GMT",
+      "pragma":"no-cache",
+      "server":"GSE",
+      "transfer-encoding":"chunked",
+      "vary":"Origin, X-Origin",
+      "x-content-type-options":"nosniff",
+      "x-frame-options":"SAMEORIGIN",
+      "x-xss-protection":"1; mode=block"
+    },
+    "status":200,
+    "statusText":"OK"
+  }

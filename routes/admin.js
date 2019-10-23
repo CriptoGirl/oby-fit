@@ -78,7 +78,12 @@ router.post('/', (req, res) => {
             "endTimeMillis": current_date_time
           }
         });
-      return google_res.then(function(result) { res.send(result) });
+      //return google_res.then(function(result) { res.send(result) });
+      return google_res.then(function(result) {
+        let status = result.status,
+        res.send('status: '+status);
+        //res.send(result);
+      });
 
       // if (google_res) {
       //   //var google_res_obj = JSON.parse(google_res);
