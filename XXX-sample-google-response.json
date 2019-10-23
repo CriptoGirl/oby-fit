@@ -114,3 +114,19 @@ result.data.bucket
     }]
   }]
 }]
+=============================================
+=============================================
+result.data.bucket.dataset
+==========================
+[{
+  "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:aggregated",
+  "point":[{
+    "startTimeNanos":"1571744520000000000",
+    "endTimeNanos":"1571748120000000000",
+    "dataTypeName":"com.google.step_count.delta",
+    "originDataSourceId":"raw:com.google.activity.segment:com.google.android.apps.fitness:user_input",
+    "value":[{
+      "intVal":6000,"mapVal":[]
+    }]
+  }]
+}]
