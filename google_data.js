@@ -37,6 +37,20 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
 
   var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
 
+  // var google_res =
+  //   fitness.users.dataset.aggregate({
+  //     userId: "me",
+  //     requestBody: {
+  //       "aggregateBy": [{
+  //         "dataTypeName": "com.google.step_count.delta",
+  //         "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+  //       }],
+  //       "bucketByTime": { "durationMillis": 86400000 },
+  //       "startTimeMillis": period_start,
+  //       "endTimeMillis": period_end
+  //     }
+  //   });
+
   var google_res =
     fitness.users.dataset.aggregate({
       userId: "me",
@@ -45,9 +59,15 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
           "dataTypeName": "com.google.step_count.delta",
           "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
         }],
-        "bucketByTime": { "durationMillis": 86400000 },
         "startTimeMillis": period_start,
-        "endTimeMillis": period_end
+        "endTimeMillis": period_end,
+        "bucketByTime": {
+          "period": {
+              "timeZoneId": "Europe/London",
+              "type": "day",
+              "value": 1
+          }
+        },
       }
     });
 
