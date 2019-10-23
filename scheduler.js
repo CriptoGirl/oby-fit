@@ -5,7 +5,8 @@ const config = require('./conf_game.js');
 const google_data = require('./google_data.js');
 //
 function startScheduler() {
-  console.log('====== Scheduler started ===========')
+  let current_date = new Date().getTime();
+  console.log('====== Scheduler started at: ' + current_date);
   t = setInterval(runJob, config.job_frequency);
 }
 
@@ -17,13 +18,11 @@ function runJob() {
     WHERE updated_reason='Running'`,
     rows => {
       rows.forEach(row => {
-        console.log('!!!!!!TEST!!!!!!!!!!!! user selected: ' + row.wallet);
         // for each user currently doing a challage, check if period has ended
         let current_date_time = new Date().getTime();
         let period_start = row.challenge_start + (config.period * row.latest_day_nb);
         let period_end = period_start + config.period;
         if (current_date_time >= period_end) {
-          console.log('!!!!!!TEST!!!!!!!!!!!! calling google_data: ' + row.wallet);
           google_data.getSteps(row.wallet, row.refresh_token, row.challenge_start,
             row.latest_day_nb, row.total_step_count);
         }

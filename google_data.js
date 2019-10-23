@@ -29,7 +29,7 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
           "dataTypeName": "com.google.step_count.delta",
           "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
         }],
-        "bucketByTime": { "durationMillis": config.period },
+        "bucketByTime": { "durationMillis": 86400000 },
         "startTimeMillis": period_start,
         "endTimeMillis": period_end
       }
