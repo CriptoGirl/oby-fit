@@ -63,7 +63,7 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
         "endTimeMillis": period_end,
         "bucketByTime": {
           "period": {
-              "timeZoneId": "Europe/London",
+              "timeZoneId": "Etc/UTC",
               "type": "day",
               "value": 1
           }
