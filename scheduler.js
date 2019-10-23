@@ -18,11 +18,11 @@ function startScheduler() {
       rows.forEach(row => {
         // for each user currently doing a challage, check if period has ended
         let current_date_time = new Date().getTime();
-        let period_start = challenge_start + (config.period * latest_day_nb);
+        let period_start = row.challenge_start + (config.period * row.latest_day_nb);
         let period_end = period_start + config.period;
         if (current_date_time >= period_end) {
-          google_data.getSteps(wallet, refresh_token, challenge_start, latest_day_nb,
-            total_step_count);
+          google_data.getSteps(row.wallet, row.refresh_token, row.challenge_start,
+            row.latest_day_nb, row.total_step_count);
         }
       });
   });
