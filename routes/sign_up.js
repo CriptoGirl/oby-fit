@@ -65,7 +65,8 @@ router.post('/', (req, res) => {
         let step_3 = true;
         if (response.insertId && response.affectedRows) result = 'User data has been sucessfully saved';
         else error = 'Can not save user data';
-        res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet, step_3, config.aaAddress });
+        let aaAddress = config.aaAddress;
+        res.render('obyfit/sign_up', { title: 'User data is saved', error, result, wallet, step_3, aaAddress });
     });
   }
 

@@ -15,7 +15,8 @@ router.post('/', (req, res) => {
   let wallet = req.body.wallet;
   // check if Wallet is found and user authorised access to Google Fit
   let step_2 = true;
-  res.render('obyfit/new_challenge', { title: 'ObyFit New Challenge page', step_2, config.aaAddress });
+  let aaAddress = config.aaAddress;
+  res.render('obyfit/new_challenge', { title: 'ObyFit New Challenge page', step_2, aaAddress });
 })
 
 module.exports = router;
