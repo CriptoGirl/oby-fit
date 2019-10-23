@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
       return google_res.then(function(result) {
         let status = result.status;
         if (status === 200) {
-          res.send(result.data);
+          res.send(result.data.bucket);
         }
         res.send('status: '+status);
         //res.send(result);
