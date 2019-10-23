@@ -80,7 +80,7 @@ router.post('/', (req, res) => {
         });
       //return google_res.then(function(result) { res.send(result) });
       return google_res.then(function(result) {
-        let status = result.status,
+        let status = result.status;
         res.send('status: '+status);
         //res.send(result);
       });
