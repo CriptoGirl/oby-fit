@@ -5,12 +5,12 @@ const constants = require('ocore/constants.js');
 const conf = require('ocore/conf');
 const eventBus = require('ocore/event_bus');
 const headlessWallet = require('headless-obyte');
-//const device = require('ocore/device.js');
+const device = require('ocore/device.js');
 const walletGeneral = require('ocore/wallet_general');
 // ObyFit imports (modules)
 const config = require('./conf_game.js');
 const scheduler = require('./scheduler.js');
-//const chatting = require('./chat.js');
+const chatting = require('./chat.js');
 const newTransactions = require('./newTransactions.js');
 
 // headless wallet is ready Event
@@ -30,16 +30,16 @@ eventBus.once('headless_wallet_ready', () => {
 	});
 
 	// user pairs his device with the bot
-	//eventBus.on('paired', (from_address, pairing_secret) => {
-	//	device.sendMessageToDevice(from_address, 'text',
-	//		"Welcome to ObyFit Bot! Please enter your wallet address.");
-	//});
+	eventBus.on('paired', (from_address, pairing_secret) => {
+		device.sendMessageToDevice(from_address, 'text',
+			"Welcome to ObyFit Bot! Please enter your wallet address.");
+	});
 
 	// user sends message to the bot
-	//eventBus.on('text', (from_address, text) => {
-	//	text = text.trim();
-	//	//chatting.chatting(from_address, text);
-	//});
+	eventBus.on('text', (from_address, text) => {
+		text = text.trim();
+		//chatting.chatting(from_address, text);
+	});
 });
 
 // user pays to the AA
