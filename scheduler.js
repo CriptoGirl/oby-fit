@@ -6,7 +6,7 @@ const google_data = require('./google_data.js');
 //
 function startScheduler() {
   let current_date = new Date().getTime();
-  current_date -= 3600000; // time zone diff
+  //current_date -= 3600000; // time zone diff
   console.log('====== Scheduler started at: ' + current_date);
   t = setInterval(runJob, config.job_frequency);
 }
@@ -23,7 +23,7 @@ function runJob() {
         //console.error('TEST: inside runJob function. wallet : ' + row.wallet);
         // for each user currently doing a challage, check if period has ended
         let current_date_time = new Date().getTime();
-        current_date_time -= 3600000; // time zone diff
+        //current_date_time -= 3600000; // time zone diff
         let period_start = row.challenge_start + (config.period * row.latest_day_nb);
         let period_end = period_start + config.period;
         if (current_date_time >= period_end) {
