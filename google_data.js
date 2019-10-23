@@ -17,7 +17,7 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
   console.error('TEST: inside getSteps function. wallet : ' + wallet);
   let period_start, period_end;
   period_start = challenge_start + (config.period * latest_day_nb);
-  let period_end = period_start + config.period;
+  period_end = period_start + config.period;
 
   // // ***************** TEST **********************//
   // if (latest_day_nb === 0) {
