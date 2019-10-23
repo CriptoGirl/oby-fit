@@ -15,14 +15,14 @@ const oauth2Client = new google.auth.OAuth2(
 
 function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_step_count) {
   console.error('TEST: inside getSteps function. wallet : ' + wallet);
-  console.error('TEST: inside getSteps function. refresh_token : ' + refresh_token);
   let period_start = challenge_start + (config.period * latest_day_nb);
   let period_end = period_start + config.period;
 
   oauth2Client.setCredentials({
    refresh_token: refresh_token
   });
-  console.error('TEST: inside getSteps function. after setCredentials : ' + wallet);
+  console.error('TEST: inside getSteps. period start : ' + period_start);
+  console.error('TEST: inside getSteps. period start : ' + period_end);
 
   var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
 
@@ -34,12 +34,12 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
           "dataTypeName": "com.google.step_count.delta",
           "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
         }],
-        "bucketByTime": { "durationMillis": 86400000 },
+        "bucketByTime": { "durationMillis": config.period },
         "startTimeMillis": period_start,
         "endTimeMillis": period_end
       }
     });
-
+  //86400000
   console.error('TEST: inside getSteps function. after calling google for : ' + wallet);
 
   return google_res.then(function(result) {
