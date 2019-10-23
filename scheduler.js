@@ -25,6 +25,7 @@ function runJob() {
         let period_start = row.challenge_start + (config.period * row.latest_day_nb);
         let period_end = period_start + config.period;
         if (current_date_time >= period_end) {
+          console.error('TEST: inside runJob function. before calling Google for wallet : ' + row.wallet);
           google_data.getSteps(row.wallet, row.refresh_token, row.challenge_start,
             row.latest_day_nb, row.total_step_count);
         }
