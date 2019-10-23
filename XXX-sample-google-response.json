@@ -144,3 +144,11 @@ result.data.bucket.dataset.point
     "mapVal":[]
   }]
 }]
+==================================
+==================================
+result.data.bucket.dataset.point.value
+=======================================
+[{
+  "intVal":6000,
+  "mapVal":[]
+}]
