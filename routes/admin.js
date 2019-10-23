@@ -82,9 +82,13 @@ router.post('/', (req, res) => {
       return google_res.then(function(result) {
         let status = result.status;
         if (status === 200) {
-          res.send(result.data.bucket);
+          let buckets = result.data.bucket;
+          for(let i=0; i<buckets.length; i++) {
+            let bucket = buckets[i];
+            res.send(bucket.dataset);
+          }
+          //res.send(result.data.bucket);
         }
-        res.send('status: '+status);
         //res.send(result);
       });
 

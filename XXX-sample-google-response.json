@@ -69,3 +69,48 @@
     "status":200,
     "statusText":"OK"
   }
+
+
+====================================================
+====================================================
+result.data
+===========
+{
+  "bucket":[{
+    "startTimeMillis":"1571727081064",
+    "endTimeMillis":"1571813481064",
+    "dataset":[{
+      "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:aggregated",
+      "point":[{
+        "startTimeNanos":"1571744520000000000",
+        "endTimeNanos":"1571748120000000000",
+        "dataTypeName":"com.google.step_count.delta",
+        "originDataSourceId":"raw:com.google.activity.segment:com.google.android.apps.fitness:user_input",
+        "value":[{
+          "intVal":6000,
+          "mapVal":[]
+        }]
+      }]
+    }]
+  }]
+}
+===================================================
+===================================================
+result.data.bucket
+========================
+[{
+  "startTimeMillis":"1571727677383",
+  "endTimeMillis":"1571814077383",
+  "dataset":[{
+    "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:aggregated",
+    "point":[{
+      "startTimeNanos":"1571744520000000000",
+      "endTimeNanos":"1571748120000000000",
+      "dataTypeName":"com.google.step_count.delta",
+      "originDataSourceId":"raw:com.google.activity.segment:com.google.android.apps.fitness:user_input",
+      "value":[{
+        "intVal":6000,"mapVal":[]
+      }]
+    }]
+  }]
+}]
