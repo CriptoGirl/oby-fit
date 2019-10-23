@@ -1,5 +1,6 @@
-//Check in explorer: https://testnetexplorer.obyte.org/#RJo3m30RbBJ/OHGm8lNEKF7KlhxDs8VxV0Kttf7uTeQ=
-//Agent address: IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L
+// 23 Oct 2019
+//Check in explorer: https://testnetexplorer.obyte.org/#oOhQcp1bcoTzam3BJ417/caAP7VknP/xhoFt79Nliek=
+//Agent address: VA2RPMV55IEHSJMB2SBIQKLSAXVLT3FT
 
 {
   init: `{
@@ -24,7 +25,7 @@
     // challenge variables
     if (trigger.initial_address != $obyfit_wallet) {
       // checking user input
-      if ( var[trigger.initial_address] ) bounce('Prize already received');
+      ////if ( var[trigger.initial_address] ) bounce('Prize already received');
       if ( trigger.output[[asset=base]] < $expected_amnt ) bounce('Prize is too small.');
       if ( trigger.output[[asset=base]] > $expected_amnt ) bounce('Prize is too big.');
       // setting variables
