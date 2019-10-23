@@ -18,7 +18,7 @@
     $prize = 1000000;  // 1,000,000 bytes
     $expected_amnt = $prize + $commission + $fees;  // amount that user has to sent to start
     $daily_goal = 10000; // daily steps goal is 10,000 steps
-    $duration = 7; // challenge duration is 7 days
+    $duration = 7; // challenge duration is 7 periods (days)
     $total_goal = $daily_goal * $duration;  // total goad is 70,000 steps
 
     // challenge variables

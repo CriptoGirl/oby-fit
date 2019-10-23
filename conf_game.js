@@ -5,6 +5,12 @@ exports.aaName = "Obyte Fit AA";
 exports.obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
 exports.obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
 exports.obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
+let day = 86400000; // day in mili-seconds
+let hour = day/24; // hour in mili-seconds
+let minute = hour/60; // minute in mili-seconds
+exports.job_frequency = 10000;
+exports.period = minute*5; // 5 minutes in mili-seconds
+//exports.period = hour/2; // 30 minutes in mili-seconds
 
 //exports.minBidAmount = 1000000;  // 1,000,000 is about £0.2
 //exports.gameDuration = 60000;

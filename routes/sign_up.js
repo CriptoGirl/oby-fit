@@ -7,9 +7,6 @@ const {google} = require('googleapis');
 // Config
 const config = require('../conf_game.js');
 // google
-// const obyfit_client_id = '109013719177-cfsh1i1gla7nhq9pevcuj80t0h55ud0d.apps.googleusercontent.com';
-// const obyfit_client_secret = 'YpQYwKJIV3wx6flgfLu6uhIW';
-// const obyfit_redirect_url = 	'http://obyfit.whistlingfrogs.com:8080/sign_up';
 const oauth2Client = new google.auth.OAuth2(
   config.obyfit_client_id,
   config.obyfit_client_secret,
@@ -37,8 +34,7 @@ router.get('/', (req, res) => {
   var q = url.parse(req.url, true);
   var qdata = q.query; //returns an object: {code: '4/sQF_....' }
   if (qdata.code) {
-    // Google Authorisation page returned authorisation code, e.g.
-    // code=4/sQF_IxMK5-GF-wBlOPNyJtzVg-kKg2lpFU1hCWBJ5lSC7tP1R9KdcYu_sYKFTqp5h-OuO_zBEXf83nSal7Y1psw&scope=https://www.googleapis.com/auth/fitness.activity.read
+    // Google Authorisation page returned authorisation code
     let google_authorization_code = qdata.code;
     refreshToken(google_authorization_code, res);
   }
@@ -46,7 +42,6 @@ router.get('/', (req, res) => {
     // Google Authorisation page returned an error
   }
   else {
-    //res.send('test');
     let step_1 = true;
     res.render('obyfit/sign_up', { title: 'ObyFit Challenge Sign-up page', step_1 });
   }

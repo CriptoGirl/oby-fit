@@ -9,6 +9,7 @@
 		"express": "4.17.1",
 		"googleapis": "44.0.0",
 		"headless-obyte": "git+https://github.com/byteball/headless-obyte.git#aa",
+		"node-schedule": "1.3.2",
 		"ocore": "git+https://github.com/byteball/ocore.git#rocks-and-formulas",
 		"pug": "2.0.4",
 		"sqlite3": "4.1.0"
