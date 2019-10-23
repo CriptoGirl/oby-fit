@@ -88,7 +88,12 @@ router.post('/', (req, res) => {
             let datasets = bucket.dataset;
             for(let y=0; y<datasets.length; y++) {
               let dataset = datasets[y];
-              res.send(dataset.point);
+              let points = dataset.point;
+              for(let z=0; z<points.length; z++) {
+                let point = points[z];
+                res.send(point.value); 
+              }
+              //res.send(dataset.point);
             }
             //res.send(bucket.dataset);
           }
