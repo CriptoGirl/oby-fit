@@ -5,10 +5,11 @@ const config = require('./conf_game.js');
 const google_data = require('./google_data.js');
 //
 function startScheduler() {
+  console.log('====== Scheduler started ===========')
   t = setInterval(runJob, config.job_frequency);
 }
 
-function startScheduler() {
+function runJob() {
   // tick-tock
   // check if any chalange period ended and request steps data from Google
   db.query(`SELECT wallet, refresh_token, challenge_start, latest_day_nb, total_step_count

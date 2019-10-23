@@ -98,34 +98,6 @@ block content
           //a.button.btn.btn-primary.ml-2(href="byteball-tn:IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L?amount=1020000&amp;asset=base")='Send Prize'
 
   if error
-    form(method='POST' action='/sign_up')
-      div.form-group
-        div.form-row
-          div.col-md-3
-            label(for='email' ) E-mail:
-            input.form-control(
-              id='email'
-              name='email'
-              type='email'
-              required
-              value= email
-            )
-          div.col-md-3
-            label(for='wallet' ) Obyte Wallet Address:
-            input.form-control(
-              id='wallet'
-              name='wallet'
-              required
-              value= wallet
-            )
-        hr
-      div.form-group
-        div.form-row
-          div.btn-toolbar
-            button.btn.btn-primary.ml-2(type='submit') Sign up
-            button.btn.btn-primary.ml-2(type='submit' disabled) Authorise
-            button.btn.btn-primary.ml-2(type='submit' disabled) Prize
-    br
     div.alert.alert-danger.alert-dismissible(id='error')
       a.close( href='#' data-dismiss='alert' ) ×
       strong Error:
