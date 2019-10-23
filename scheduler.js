@@ -11,7 +11,7 @@ function startScheduler() {
 }
 
 function runJob() {
-  console.error('running funJob function');
+  console.error('TEST: running runJob function');
   // tick-tock
   // check if any chalange period ended and request steps data from Google
   db.query(`SELECT wallet, refresh_token, challenge_start, latest_day_nb, total_step_count
@@ -19,6 +19,7 @@ function runJob() {
     WHERE updated_reason='Running'`,
     rows => {
       rows.forEach(row => {
+        console.error('TEST: inside runJob function. wallet : ' + row.wallet);
         // for each user currently doing a challage, check if period has ended
         let current_date_time = new Date().getTime();
         let period_start = row.challenge_start + (config.period * row.latest_day_nb);
