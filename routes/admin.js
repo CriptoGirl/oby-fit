@@ -94,9 +94,9 @@ router.post('/', (req, res) => {
                 let values = point.value;
                 for(let z=0; z<values.length; z++) {
                   let value = values[z];
-                  res.send(value.intVal);
+                  res.send(value.intVal.toString());
                 }
-                //res.send(point.value); 
+                //res.send(point.value);
               }
               //res.send(dataset.point);
             }
