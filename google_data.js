@@ -23,8 +23,9 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
    refresh_token: refresh_token
   });
   console.error('TEST: inside getSteps function. after setCredentials : ' + wallet);
-  
+
   var fitness = google.fitness({ version: 'v1', auth: oauth2Client});
+
   var google_res =
     fitness.users.dataset.aggregate({
       userId: "me",
@@ -39,7 +40,9 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
       }
     });
 
-  //return google_res.then(function(result) {
+  console.error('TEST: inside getSteps function. after calling google for : ' + wallet);
+
+  return google_res.then(function(result) {
     let status = result.status;
     if (status === 200) {
       let steps = 0;
