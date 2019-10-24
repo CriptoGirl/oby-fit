@@ -29,7 +29,7 @@ function sendSteps(wallet, steps, day_nb, total_steps) {
   };
   headlessWallet.sendMultiPayment(opts, (err, unit) => {
     if (err){
-      console.error('Error sending data to AA. Wallet: ' + wallet);
+      console.error('Error sending data to AA: ' + err);
       return;
     }
     else if (unit) console.error('Data message sent to the AA, unit: ' + unit);
