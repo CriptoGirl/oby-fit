@@ -4,7 +4,10 @@ block content
   //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   //<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   br
-  h2 ObyFit Admin Edit
+  h2 ObyFit Google Integration Test Harness
+  br
+  p Use this Test Harness, if you are having difficulties with Google Fit integration or
+    span  for speed-testing ObyFit AA.  
 
   if error
     br
@@ -36,17 +39,18 @@ block content
                 td= row.total_step_count
                   //input( id='total_step_count' name='total_step_count' value=row.total_step_count requred)
                 td= row.updated_reason
-                  //select( id='updated_reason' name='updated_reason' required )
-                    //option(value='New challenge') New challenge
-                    //option(value='Running') Challenge is in progress
-                    //option(value='Ended') Challenge ended
                 td
-                  input( id='form_action' name='form_action' value='edit' hidden)
-                  button.btn.btn-primary(type='submit') Edit
+                  if (row.latest_day_nb < 7)
+                    input( id='form_action' name='form_action' value='edit' hidden)
+                    button.btn.btn-primary(type='submit') Add Steps
+                  else
+                    a.button.btn.btn-primary(href="new_challenge")="New Challenge"
 
   if edit_form
     form(method='POST' action='/admin_edit')
       div.form-group
+        br
+        h5 Enter step count for the next period and submit to AA
         br
         div.form-row
           div.col-md-3
@@ -57,25 +61,23 @@ block content
             input.form-control( id='challenge_start' name='challenge_start' value=data.challenge_start readonly )
           div.col-md-1
             label(for='latest_day_nb' ) Period:
-            input.form-control( id='latest_day_nb' name='latest_day_nb' value=data.latest_day_nb type='number' required)
-        br
-        div.form-row
+            input.form-control(
+              id='new_period' name='new_period'
+              value=new_period
+              readonly)
           div.col-md-2
             label(for='latest_day_step_count' ) Steps in the Period:
-            input.form-control( id='latest_day_step_count' name='latest_day_step_count' value=data.latest_day_step_count required )
-          div.col-md-2
-            label(for='total_step_count' ) Total Steps:
-            input.form-control( id='total_step_count' name='total_step_count' value=data.total_step_count required)
-          div.col-md-3
-            label(for='updated_reason' ) Status:
-            select.form-control( id='updated_reason' name='updated_reason' value=data.updated_reason required )
-              option(value='New challenge') New challenge
-              option(value='Running') Challenge is in progress
-              option(value='Ended') Challenge ended
+            input.form-control(
+              id='latest_day_step_count'
+              name='latest_day_step_count'
+              value=data.latest_day_step_count
+              type='number' min='0' max='20000' step='100'
+              required )
+
         br
         div.form_row
           input( id='form_action' name='form_action' value='save' hidden)
-          button.btn.btn-primary(type='submit') Save
+          button.btn.btn-primary(type='submit') Save & Post
 
     br
     br

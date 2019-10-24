@@ -5,6 +5,9 @@ block content
   //<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   br
   h2 Start new ObyFit Challenge
+  br
+  p.strong Only use this page if your Obyte testnet wallet is located on the same device!
+  p.strong Alternatively go to your wallet and send 1,020,000 bytes to ObyFit AA to start a new challenge!
 
   // JavaScript section
 
@@ -12,6 +15,7 @@ block content
 
   if step_1
     form(method='POST' action='/new_challenge')
+      br
       h5 Step 1. Specify your Obyte testnet wallet address
       p Please provide us with your Obyte testnet wallet address.
       div.form-group
