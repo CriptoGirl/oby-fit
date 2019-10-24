@@ -2,15 +2,17 @@
 const network = require('ocore/network.js');
 const composer = require('ocore/composer.js');
 const objectHash = require('ocore/object_hash.js');
-const device = require('ocore/device.js');
+//const device = require('ocore/device.js');
 const headlessWallet = require('headless-obyte');
 // Game imports (modules)
 const config = require('./conf_game.js');
 
-function updateSteps() {
+function sendSteps(wallet, steps, day_nb, total_steps) {
   let dataFeed = {};
-  dataFeed.wallet =
-  dataFeed.steps = ;
+  dataFeed.user_wallet = wallet;
+  dataFeed.user_steps = steps;
+  dataFeed.day_nb = day_nb;
+  dataFeed.user_total_steps = total_steps;
   var opts = {
     paying_addresses: [config.headlessWallet],
     change_address: config.headlessWallet,
@@ -27,20 +29,14 @@ function updateSteps() {
   };
   headlessWallet.sendMultiPayment(opts, (err, unit) => {
     if (err){
-      console.log('Error paying winnings for lottery id: ' + lotteryId);
-      device.sendMessageToDevice('0OJPHFMUUXRQGZKE2SVXFWVVTKSNXD5EQ', 'text',
-        'ADMIN: error sending data to AA: ' + err);
+      console.error('Error sending data to AA. Wallet: ' + wallet);
       return;
     }
-    else if (unit) {
-      // console.log('STOP Command sent from the Bot to the AA, unit: ' + unit);
-      device.sendMessageToDevice('0OJPHFMUUXRQGZKE2SVXFWVVTKSNXD5EQ', 'text',
-        'ADMIN: data sent to AA from bot, unit: ' + unit);
-    }
+    else if (unit) console.error('Data message sent to the AA, unit: ' + unit);
   });
 }
 
 // AA check who sent the message, so only this bot (i.e. its headless wallet) can
 // tell it to stop.
 
-exports.updateSteps = updateSteps;
+exports.sendSteps = sendSteps;

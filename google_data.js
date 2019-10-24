@@ -1,9 +1,8 @@
 // Obyte imports (libraries)
 const db = require('ocore/db');
-// Scheduler
-//var schedule = require('node-schedule');
-// Config
+// Config & other ObyFit modules
 const config = require('./conf_game.js');
+const aa_data = require('./aa_data.js');
 // Google API libraries integration
 const {google} = require('googleapis');
 // google
@@ -18,16 +17,6 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
   let period_start, period_end;
   period_start = challenge_start + (config.period * latest_day_nb);
   period_end = period_start + config.period;
-
-  // // ***************** TEST **********************//
-  // if (latest_day_nb === 0) {
-  //   period_start = 1570122611880;
-  //   period_end = challenge_start + (config.period * latest_day_nb) + config.period;
-  // }
-  // else {
-  //   period_start = challenge_start + (config.period * latest_day_nb);
-  //   let period_end = period_start + config.period;
-  // }
 
   oauth2Client.setCredentials({
    refresh_token: refresh_token
@@ -109,7 +98,7 @@ function getSteps(wallet, refresh_token, challenge_start, latest_day_nb, total_s
         [ latest_day_nb, steps, total_step_count, reason, wallet ]
       );
       // send message to AA
-      //
+      aa_data.sendSteps(wallet, steps, latest_day_nb, total_step_count);
     } // if status ok
   });
 }

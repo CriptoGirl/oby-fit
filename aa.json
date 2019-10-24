@@ -1,6 +1,6 @@
-// 23 Oct 2019
-//Check in explorer: https://testnetexplorer.obyte.org/#oOhQcp1bcoTzam3BJ417/caAP7VknP/xhoFt79Nliek=
-//Agent address: VA2RPMV55IEHSJMB2SBIQKLSAXVLT3FT
+// 24 Oct 2019
+// Check in explorer: https://testnetexplorer.obyte.org/#lFBMjTH+hk8wPHafdvmmAPZzcOctdQkSOjTNF/0BKlg=
+// Agent address: AGW5V6G74CTTLJJKDXPUMMH2OIDR5CQD
 
 {
   init: `{
@@ -8,8 +8,18 @@
 		// OBYFIT AA from Whistling Frogs
     // ============================================================
     // Deposit 1,020,000 bytes and allow connection to Google Fit.
+    // visit obyfit.whistlingfrogs.com
+    // ============================================================
+    // Production settings:
+    // Duration of the challange: 7 days
     // Walk 10,000 steps a day to earn back up to 10,000 bytes a day.
     // Walk 70,000 steps in 7 days to earn back 30,000 bytes bonus.
+    // (change period_goal and total_goal parameters)
+    // ============================================================
+    // Test settings:
+    // Duration of the challange: 7 hours
+    // Walk 1,000 steps an hour to earn back up to 10,000 bytes.
+    // Walk 7,000 steps in 7 hous to earn back 30,000 bytes bonus.
     // ============================================================
 
     // challenge parameters
@@ -18,24 +28,25 @@
     $commission = 20000 - $fees; // 20,000 bytes - $5,000 bytes
     $prize = 1000000;  // 1,000,000 bytes
     $expected_amnt = $prize + $commission + $fees;  // amount that user has to sent to start
-    $daily_goal = 10000; // daily steps goal is 10,000 steps
+    $period_goal = 1000; // period goal is 1,000 steps an hour in test // 10,000 steps in a day in prod
     $duration = 7; // challenge duration is 7 periods (days)
-    $total_goal = $daily_goal * $duration;  // total goad is 70,000 steps
+    $total_goal = $period_goal * $duration;  // total goad is 7,000 steps in test / 70,000 steps in prod
 
     // challenge variables
+    // prize money from user
     if (trigger.initial_address != $obyfit_wallet) {
       // checking user input
-      ////if ( var[trigger.initial_address] ) bounce('Prize already received');
+      if ( var[trigger.initial_address] ) bounce('Prize already received');
       if ( trigger.output[[asset=base]] < $expected_amnt ) bounce('Prize is too small.');
       if ( trigger.output[[asset=base]] > $expected_amnt ) bounce('Prize is too big.');
       // setting variables
       $user_wallet = trigger.initial_address;
       $day_nb = 0;
     }
+    // data message from ObyFit
     else {
       $user_wallet = trigger.data.user_wallet;
-      //if (trigger.data.user_steps) return;
-      $user_steps = (trigger.data.user_steps <= $daily_goal) ? trigger.data.user_steps : $daily_goal;
+      $user_steps = (trigger.data.user_steps <= $period_goal) ? trigger.data.user_steps : $period_goal;
       $day_nb = trigger.data.day_nb;
       $user_total_steps = trigger.data.user_total_steps;
       $new_challenge = false;
@@ -72,14 +83,14 @@
             payload: {
               asset: 'base',
               outputs: [
-                { address: '{ $user_wallet }', amount: '{ $user_steps }' }
+                { address: '{ $user_wallet }', amount: '{ $user_steps * 10 }' }
               ]
             }
           },
           {
             app: 'state',
             state: `{
-              var[$user_wallet] -= $user_steps;
+              var[$user_wallet] -= $user_steps * 10;
               response['message'] = 'Keep on walking';
             }`
           }
@@ -105,7 +116,7 @@
                   if: `{ ( $user_total_steps < $total_goal AND $user_steps > 0 ) }`,
                   payload: {
                     asset: 'base',
-                    outputs: [ { address: '{ $user_wallet }', amount: '{ $user_steps }' } ]
+                    outputs: [ { address: '{ $user_wallet }', amount: '{ $user_steps * 10 }' } ]
                   }
                 }
               ] // payload cases
