@@ -63,8 +63,8 @@ router.post('/', (req, res) => {
             [req.body.new_period, req.body.latest_day_step_count, total_step_count,
             updated_reason, req.body.wallet ]);
           // send step count to AA
-          //aa_data.sendSteps(req.body.wallet, req.body.latest_day_step_count,
-          //  req.body.latest_day_nb, total_step_count);
+          aa_data.sendSteps(req.body.wallet, req.body.latest_day_step_count,
+            req.body.new_period, total_step_count);
           message='Data sucessfully updated and step count sent to AA.'
         }
       getUserData(res, message);
