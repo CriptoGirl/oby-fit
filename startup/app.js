@@ -9,6 +9,7 @@ const home = require('../routes/home');
 const sign_up = require('../routes/sign_up');
 const new_challenge = require('../routes/new_challenge');
 const admin = require('../routes/admin');
+const admin_edit = require('../routes/admin_edit');
 // info pages
 const terms = require('../routes/terms');
 const privacy = require('../routes/privacy');
@@ -24,6 +25,7 @@ app.use('/', home);
 app.use('/sign_up', sign_up);
 app.use('/new_challenge', new_challenge);
 app.use('/admin', admin);
+app.use('/admin_edit', admin_edit);
 // info pages
 app.use('/terms', terms);
 app.use('/privacy', privacy);
