@@ -23,7 +23,33 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  getUserData(res);
+  if (req.body.form_action === 'edit') {
+    let edit_form = true;
+    let wallet = req.body.wallet;
+    let error;
+    db.query(`SELECT wallet, challenge_start, latest_day_nb, latest_day_step_count,
+      total_step_count, updated_reason
+      FROM xwf_obyfit_user_challenge WHERE wallet=?`, [wallet],
+      rows => {
+        if (rows.length === 0) error = 'No data found';
+        else if (rows.length > 1) error = 'Duplicate rows found';
+        else {
+          let data = rows[0];
+          res.render('obyfit/admin_edit', { title: 'ObyFit Admin Edit page',
+            edit_form, data });
+        }
+    });
+  }
+
+  if (req.body.form_action === 'save') {
+    db.query(`UPDATE xwf_obyfit_user_challenge SET
+      latest_day_nb=?, latest_day_step_count=?, total_step_count=?, updated_reason=?
+      WHERE wallet=?`,
+      [req.body.latest_day_nb, req.body.latest_day_step_count, req.body.total_step_count,
+      req.body.updated_reason, req.body.wallet ]);
+    getUserData(res);
+  }
+
 });
 
 module.exports = router;

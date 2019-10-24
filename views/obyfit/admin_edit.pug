@@ -11,41 +11,70 @@ block content
     p.strong= error
 
   if result
-    // Form section
-    form(method='POST' action='/admin_edit')
-      br
-      table.table
-        thead
-          tr
-            th Wallet
-            th Authorisation
-            th Token
-            th Start
-            th Period
-            th Steps
-            th TotalSteps
-            th Status
-          tbody
-            each row in result
+    br
+    table.table
+      thead
+        tr
+          th Wallet
+          th Start
+          th Period
+          th Steps
+          th TotalSteps
+          th Status
+          th Edit
+        tbody
+          each row in result
+            form(method='POST' action='/admin_edit')
               tr
                 td= row.wallet
-                td= row.authorization_code
-                td= row.refresh_token
+                  input( id='wallet' name='wallet' value=row.wallet hidden)
                 td= row.challenge_start
-                td
-                  input.form-control(
-                    id='period'
-                    name='period'
-                    value=row.latest_day_nb
-                    required
-                  )
+                td= row.latest_day_nb
+                  //input( id='latest_day_nb' name='latest_day_nb' value=row.latest_day_nb required )
                 td= row.latest_day_step_count
+                  //input( id='latest_day_step_count' name='latest_day_step_count' value=row.latest_day_step_count required)
                 td= row.total_step_count
+                  //input( id='total_step_count' name='total_step_count' value=row.total_step_count requred)
                 td= row.updated_reason
+                  //select( id='updated_reason' name='updated_reason' required )
+                    //option(value='New challenge') New challenge
+                    //option(value='Running') Challenge is in progress
+                    //option(value='Ended') Challenge ended
+                td
+                  input( id='form_action' name='form_action' value='edit' hidden)
+                  button.btn.btn-primary(type='submit') Edit
 
-      p Manually trigger AA Notifications
+  if edit_form
+    form(method='POST' action='/admin_edit')
       div.form-group
+        br
         div.form-row
+          div.col-md-3
+            label(for='wallet' ) Obyte Wallet Address:
+            input.form-control( id='wallet' name='wallet' value=data.wallet readonly )
+          div.col-md-3
+            label(for='challenge_start' ) Start of the challenge:
+            input.form-control( id='challenge_start' name='challenge_start' value=data.challenge_start readonly )
+          div.col-md-1
+            label(for='latest_day_nb' ) Period:
+            input.form-control( id='latest_day_nb' name='latest_day_nb' value=data.latest_day_nb type='number' required)
+        br
+        div.form-row
+          div.col-md-2
+            label(for='latest_day_step_count' ) Steps in the Period:
+            input.form-control( id='latest_day_step_count' name='latest_day_step_count' value=data.latest_day_step_count required )
+          div.col-md-2
+            label(for='total_step_count' ) Total Steps:
+            input.form-control( id='total_step_count' name='total_step_count' value=data.total_step_count required)
+          div.col-md-3
+            label(for='updated_reason' ) Status:
+            select.form-control( id='updated_reason' name='updated_reason' value=data.updated_reason required )
+              option(value='New challenge') New challenge
+              option(value='Running') Challenge is in progress
+              option(value='Ended') Challenge ended
+        br
+        div.form_row
+          input( id='form_action' name='form_action' value='save' hidden)
           button.btn.btn-primary(type='submit') Save
 
     br
