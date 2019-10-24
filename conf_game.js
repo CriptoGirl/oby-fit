@@ -11,7 +11,7 @@ let minute = hour/60; // minute in mili-seconds
 exports.job_frequency = 10000;
 exports.period = hour; // 1 hour
 
-exports.aaAddress = "FM7LQLM64XPB7BIZOC5C4XOJZIS76F2G"; // AA version 0.1 - 24 Oct 2019
+exports.aaAddress = "3XLBBQGBYIRNMPZZHJWC37QX7CCDHNO6"; // AA version 0.1 - 24 Oct 2019
 
 // Hosting environment
 exports.headlessWallet = 'WXJIHWMUYHRQRPP2MTRWC6PQHPFBO7HG';
@@ -20,3 +20,4 @@ exports.headlessWallet = 'WXJIHWMUYHRQRPP2MTRWC6PQHPFBO7HG';
 //exports.aaAddress = "IOSRPEX2BXEV6KNFBJTCAA32MT7NDI5L"; // AA version 0.0.1 - 20 Oct 2019
 //exports.aaAddress = "VA2RPMV55IEHSJMB2SBIQKLSAXVLT3FT"; // AA version 0.0.1 - 23 Oct 2019
 //exports.aaAddress = "AGW5V6G74CTTLJJKDXPUMMH2OIDR5CQD"; // AA version 0.0.1 - 24 Oct 2019
+//exports.aaAddress = "FM7LQLM64XPB7BIZOC5C4XOJZIS76F2G"; // AA version 0.1 - 24 Oct 2019

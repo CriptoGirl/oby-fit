@@ -12,6 +12,7 @@ const config = require('./conf_game.js');
 const scheduler = require('./scheduler.js');
 const chatting = require('./chat.js');
 const newTransactions = require('./newTransactions.js');
+const stableTransactions = require('./stableTransactions.js');
 
 // headless wallet is ready Event
 eventBus.once('headless_wallet_ready', () => {
@@ -44,9 +45,13 @@ eventBus.once('headless_wallet_ready', () => {
 });
 
 // user pays to the AA
-//eventBus.on('new_my_transactions', (arrUnits) => {
-eventBus.on('my_transactions_became_stable', (arrUnits) => {
+eventBus.on('new_my_transactions', (arrUnits) => {
 	newTransactions.newTransactions(arrUnits);
+});
+
+// user payment is confirmed to the AA
+eventBus.on('my_transactions_became_stable', (arrUnits) => {
+	stableTransactions.stableTransactions(arrUnits);
 });
 
 scheduler.startScheduler();

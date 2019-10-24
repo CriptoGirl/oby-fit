@@ -3,7 +3,7 @@ const db = require('ocore/db');
 // ObyFit imports (modules)
 const config = require('./conf_game.js');
 
-function newTransactions(arrUnits) {
+function stableTransactions(arrUnits) {
   // for each new transaction unit
   for(let i=0; i<arrUnits.length; i++) {
     let unit = arrUnits[i];
@@ -19,16 +19,19 @@ function newTransactions(arrUnits) {
                 if (row.address !== config.aaAddress) unitUserWallet = row.address;
               }
             });
-            // ** Update db ** //
+            // ** Update db with chalange start time ** //
+            let current_date_time = new Date().getTime();
+            current_date_time -= 7200000; // time zone diff: 2 hours back
             db.query(`UPDATE xwf_obyfit_user_challenge SET
-              updated_reason='Processing',
+              challenge_start=?, latest_day_nb=0, latest_day_step_count=0, total_step_count=0,
+              updated_reason='Running',
               updated_source='Obyte'
               WHERE wallet=?`,
-              [ unitUserWallet ]);
+              [ current_date_time, unitUserWallet ]);
           });  // get wallet address from the unit
         } // inbound Transaction
     }); // db
   }  // for each new transaction unit
 }
 
-exports.newTransactions = newTransactions;
+exports.stableTransactions = stableTransactions;
