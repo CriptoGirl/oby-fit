@@ -44,7 +44,8 @@ eventBus.once('headless_wallet_ready', () => {
 });
 
 // user pays to the AA
-eventBus.on('new_my_transactions', (arrUnits) => {
+//eventBus.on('new_my_transactions', (arrUnits) => {
+eventBus.on('my_transactions_became_stable', (arrUnits) => {
 	newTransactions.newTransactions(arrUnits);
 });
 

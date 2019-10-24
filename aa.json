@@ -1,29 +1,29 @@
 // 24 Oct 2019
-// Check in explorer: https://testnetexplorer.obyte.org/#lFBMjTH+hk8wPHafdvmmAPZzcOctdQkSOjTNF/0BKlg=
-// Agent address: AGW5V6G74CTTLJJKDXPUMMH2OIDR5CQD
+// Check in explorer: https://testnetexplorer.obyte.org/#JDZaKNmRnXlBHmqupdU48YLlJyrrilPXVLLKhxMK27o=
+// Agent address: FM7LQLM64XPB7BIZOC5C4XOJZIS76F2G
 
 {
   init: `{
 		// ============================================================
-		// OBYFIT AA from Whistling Frogs
+		// OBYFIT AA from Whistling Frogs - v 0.1 24 Oct 2019
     // ============================================================
     // Deposit 1,020,000 bytes and allow connection to Google Fit.
     // visit obyfit.whistlingfrogs.com
     // ============================================================
     // Production settings:
-    // Duration of the challange: 7 days
+    // Duration of the challange: 7 days / periods
     // Walk 10,000 steps a day to earn back up to 10,000 bytes a day.
     // Walk 70,000 steps in 7 days to earn back 30,000 bytes bonus.
     // (change period_goal and total_goal parameters)
     // ============================================================
     // Test settings:
-    // Duration of the challange: 7 hours
+    // Duration of the challange: 7 hours / periods
     // Walk 1,000 steps an hour to earn back up to 10,000 bytes.
     // Walk 7,000 steps in 7 hous to earn back 30,000 bytes bonus.
     // ============================================================
 
     // challenge parameters
-    $obyfit_wallet = 'QUONK7CUHPTGLNTZ6JE57SDVSFVDBCMM';
+    $obyfit_wallet = 'WXJIHWMUYHRQRPP2MTRWC6PQHPFBO7HG';
     $fees = 5000; // should be enough for AA to pay for 8 transactions
     $commission = 20000 - $fees; // 20,000 bytes - $5,000 bytes
     $prize = 1000000;  // 1,000,000 bytes
