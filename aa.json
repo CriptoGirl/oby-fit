@@ -1,6 +1,6 @@
 // 24 Oct 2019
-// Check in explorer: https://testnetexplorer.obyte.org/#ja/blazqbbM3nI/B3Nrs0ltyOCW9LJXmR5U2NJY7ujU=
-// Agent address: 3XLBBQGBYIRNMPZZHJWC37QX7CCDHNO6
+// Check in explorer: https://testnetexplorer.obyte.org/#i56Yb5DMhp2LcahPS5X5iupfDe54S8BZZW2HD7PKxrg=
+// Agent address: DEK55NGT2FQSHYSK56EA3YXQBCJ5K7PJ
 
 {
   init: `{
@@ -49,11 +49,11 @@
       if (trigger.data.user_steps <= $period_goal) {
         $user_steps = trigger.data.user_steps;
       }
-      else $user_steps = $period_goal;
-      //$user_steps = (trigger.data.user_steps <= $period_goal) ? trigger.data.user_steps : $period_goal;
+      else {
+        $user_steps = $period_goal;
+      }
       $day_nb = trigger.data.day_nb;
       $user_total_steps = trigger.data.user_total_steps;
-      $new_challenge = false;
     }
   }`,
   messages: {
