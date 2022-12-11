@@ -6,7 +6,7 @@
 	"author": "Whistling Frogs",
 	"license": "MIT",
 	"dependencies": {
-		"express": "4.17.1",
+		"express": "4.17.3",
 		"googleapis": "44.0.0",
 		"headless-obyte": "git+https://github.com/byteball/headless-obyte.git#aa",
 		"ocore": "git+https://github.com/byteball/ocore.git#rocks-and-formulas",
